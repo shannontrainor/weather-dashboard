@@ -14,28 +14,22 @@ $(document).ready({
 
     //**************CURRENT WEATHER*********************/
     //1. Create ajax call to search weather API for current location
-    
-    // success key to handle response
-    //check if search value (city) exists in history array
-        //if does not exist, push to history & save to LS
-        // also pass search value as argument to function make row
-
-//make row creates LI tag, gives class name, gives text
-    //append LI tag toUL with class name history (HTML)
-
-//empty saved from today
-
-//create title h3 tag with class & text data.name & timestamp
-// create div w/ id name card
-//create p tag for wind/humid/temp
-//create cardbody div
-//create img tag, append to title
-
+        // success key to handle response
+    //2. Check if search value (city) exists in history array
+        //if does not exist, push to history & save to local storage
+        // also pass search value as argument to function to make row  
+    //3. make row create LI tag, give class name, give text
+        //append LI tag to UL with class name history (HTML)
+    //4. empty saved from today
+    //5. create title h3 tag with class & text data.name & timestamp
+    //6. create div w/ id name card
+    //7. create p tag for wind/humid/temp
+    //8. create cardbody div
+    //9.create img tag, append to title
     //append img tag to title
     //append temp to card body
     //append cardbody to card
     //append card to div on HTML tag "today"
-
 
 // call 2 functions
     //ajax GET
