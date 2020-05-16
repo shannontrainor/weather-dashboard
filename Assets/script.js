@@ -26,23 +26,23 @@ $(document).ready({
     //7. create p tag for wind/humid/temp
     //8. create cardbody div
     //9.create img tag, append to title
-    //append img tag to title
-    //append temp to card body
-    //append cardbody to card
-    //append card to div on HTML tag "today"
+        //append img tag to title
+        //append temp to card body
+        //append cardbody to card
+        //append card to div on HTML tag "today"
 
-// call 2 functions
-    //ajax GET
-    // function data
-//for loop over data.list (5 day forcast)
+    //***************5 DAY FORECAST****************/
+        // 1. call 2 functions
+                //ajax GET
+                // function data
+        //for loop over data.list (5 day forcast)
 
-//create dynamic elements, assign value
-//append to bigger element
-//make 5 for 5 day forcast
-
-//get UV index for lat/long
-//use URL/API
-//create elements & attach value
+        //2. create dynamic elements, assign value
+        //3. append to bigger element
+        //4. make 5 for 5 day forcast
+        //5. get UV index for lat/long
+        //6. use URL/API
+        //7. create elements & attach value
 
 
 
