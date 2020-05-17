@@ -3,7 +3,11 @@
 $(document).ready (function (){
     //Create Event Listener for Search btn
     $("#search-button").on("click", function (){
-        //check if working  //alert("clicked");
+        //check if working  alert("clicked");
+        //create varaiable for giving value to searchValue
+        var searchValue = $("#search-value").val();
+        //clear search value box
+        $("#search-value").val("");
 
         //call searchWeather function
         searchWeather(searchValue);
@@ -15,8 +19,12 @@ $(document).ready (function (){
         $.ajax({
                 type: "GET",
                 url: "api.openweathermap.org/data/2.5/weather?q=" + searchValue + "&appid=c280336eb7ed8cace2e8a869de69702a&units=imperial",
-                dataType: "JSON"
-                    
+                dataType: "JSON",
+                 // success key to handle response
+                success: function(data) {
+                        
+                }
+                   
         });
     };
 
@@ -51,7 +59,7 @@ $(document).ready (function (){
 
 
 
-    
+
 
 });
 
@@ -64,7 +72,6 @@ $(document).ready (function (){
     //4. Pass history.length -1 as argument in search weather function
 
     //**************CURRENT WEATHER*********************/
-        // success key to handle response
     //2. Check if search value (city) exists in history array
         //if does not exist, push to history & save to local storage
         // also pass search value as argument to function to make row  
