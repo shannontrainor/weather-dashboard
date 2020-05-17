@@ -22,11 +22,21 @@ $(document).ready (function (){
                 dataType: "JSON",
                  // success key to handle response
                 success: function(data) {
-                        
+                    if (history.indexOf(searchValue) === -1) {
+                        history.push(searchValue);
+                        window.localStorage.setItem("history", JSON.stringify(history));
+
+                    }
+
                 }
                    
         });
     };
+
+
+
+                    // Check local storage for most recent search history
+                // if history, set hist variable to previous history searches
 
     //**HTML SYNTAX FOR CURRENT WEATHER**
 
@@ -41,7 +51,17 @@ $(document).ready (function (){
     //cardbody div
     var cardBody = $("<div>").addClass("card-body");
 
+            // if no history, set hist variable to empty array []
+            //get search history, turn into array if any is available
+    var history = JSON.parse(window.localStorage.getItem("history")) || [];
+    
+    //Check if history.length > 0
+    if (history.length > 0) {
+    //if yes, call function to search for weather
+        searchWeather(history[history.length-1]);
+        //Pass history.length -1 as argument in search weather function
 
+    }
 
 
 
@@ -64,12 +84,6 @@ $(document).ready (function (){
 });
 
     //*************SEARCH BUTTON & SEARCH LOG*****************/
-    //2. Check local storage for most recent search history
-            // if no history, set hist variable to empty array []
-            // if history, set hist variable to previous history searches
-    //3. Check if history.length > 0
-            // if yes, call function to search for weather
-    //4. Pass history.length -1 as argument in search weather function
 
     //**************CURRENT WEATHER*********************/
     //2. Check if search value (city) exists in history array
