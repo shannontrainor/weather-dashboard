@@ -4,17 +4,56 @@ $(document).ready (function (){
     //Create Event Listener for Search btn
     $("#search-button").on("click", function (){
         //check if working  //alert("clicked");
+
+        //call searchWeather function
+        searchWeather(searchValue);
     });
 
+    //function for current weather search
     function searchWeather(searchValue) {
+        // Create ajax call to search weather API for current location
         $.ajax({
-                type: "GET"
+                type: "GET",
                 url: "api.openweathermap.org/data/2.5/weather?q=" + searchValue + "&appid=c280336eb7ed8cace2e8a869de69702a&units=imperial",
-                dataType: "JSON", 
-        
-            
+                dataType: "JSON"
+                    
         });
-};
+    };
+
+    //**HTML SYNTAX FOR CURRENT WEATHER**
+
+    //title h3 tag with class & text data.name & timestamp
+    var title = $("<h3>").addClass("card-title").text(data.name + "(" + new Date().toLocaleDateString() + ")");
+    //div w/ id card
+    var card = $("<div>").addClass("card");
+    //p tags for wind/humid/temp
+    var wind = $("<p>").addClass("card-text").text("Wind Speed:" + data.wind.speed + "mph");
+    var humid = $("<p>").addClass("card-text").text("Humidity:" + data.main.humidity + "%");
+    var temp = $("<p>").addClass("card-text").text("Temperature:" + data.main.temp + "F");
+    //cardbody div
+    var cardBody = $("<div>").addClass("card-body");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+});
 
     //*************SEARCH BUTTON & SEARCH LOG*****************/
     //2. Check local storage for most recent search history
@@ -25,7 +64,6 @@ $(document).ready (function (){
     //4. Pass history.length -1 as argument in search weather function
 
     //**************CURRENT WEATHER*********************/
-    //1. Create ajax call to search weather API for current location
         // success key to handle response
     //2. Check if search value (city) exists in history array
         //if does not exist, push to history & save to local storage
@@ -33,10 +71,6 @@ $(document).ready (function (){
     //3. make row create LI tag, give class name, give text
         //append LI tag to UL with class name history (HTML)
     //4. empty saved from today
-    //5. create title h3 tag with class & text data.name & timestamp
-    //6. create div w/ id name card
-    //7. create p tag for wind/humid/temp
-    //8. create cardbody div
     //9.create img tag, append to title
         //append img tag to title
         //append temp to card body
@@ -55,4 +89,3 @@ $(document).ready (function (){
         //5. get UV index for lat/long
         //6. use URL/API
         //7. create elements & attach value
-
