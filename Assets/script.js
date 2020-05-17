@@ -13,6 +13,8 @@ $(document).ready (function (){
         searchWeather(searchValue);
     });
 
+    
+    
     //make row, create LI tag, give class name, give text
     function makeRow(text) {
         var li = $("<li>").addClass("list-group-item list-group-item-action").text(text);
@@ -24,22 +26,39 @@ $(document).ready (function (){
     function searchWeather(searchValue) {
         // Create ajax call to search weather API for current location
         $.ajax({
-                type: "GET",
-                url: "api.openweathermap.org/data/2.5/weather?q=" + searchValue + "&appid=c280336eb7ed8cace2e8a869de69702a&units=imperial",
-                dataType: "JSON",
-                 // success key to handle response
-                success: function(data) {
-                    // if history is available, set hist variable to previous history searches
-                    if (history.indexOf(searchValue) === -1) {
-                        history.push(searchValue);
-                        window.localStorage.setItem("history", JSON.stringify(history));
-                        //call makeRow function, pass search value as argument to function to make row
-                        makeRow(searchValue);
-                    }
-                    //clear history
-                    $("#today").empty();
-                }
-                   
+            type: "GET",
+            url: "api.openweathermap.org/data/2.5/weather?q=" + searchValue + "&appid=295371f9dffd88f4084ef49bfd45aaae&units=imperial",
+            dataType: "JSON",
+             // success key to handle response
+            success: function(data) {
+                // if history is available, set hist variable to previous history searches
+                if (history.indexOf(searchValue) === -1) {
+                    history.push(searchValue);
+                    window.localStorage.setItem("history", JSON.stringify(history));
+                    //call makeRow function, pass search value as argument to function to make row
+                    makeRow(searchValue);
+                };
+
+                //clear history
+                $("#today").empty();
+                //title h3 tag with class & text data.name & timestamp
+                var title = $("<h3>").addClass("card-title").text(data.name + "(" + new Date().toLocaleDateString() + ")");
+                //div w/ id card
+                var card = $("<div>").addClass("card");
+                //p tags for wind/humid/temp
+                var wind = $("<p>").addClass("card-text").text("Wind Speed:" + data.wind.speed + "mph");
+                var humidity = $("<p>").addClass("card-text").text("Humidity:" + data.main.humidity + "%");
+                var temperature = $("<p>").addClass("card-text").text("Temperature:" + data.main.temp + "F");
+                //cardbody div
+                var cardBody = $("<div>").addClass("card-body");
+                //create image tag
+                var image = $("<img>").attr("src", "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png");
+                //append all to title/HTML
+                title.append(image);
+                cardBody.append(title, wind, humidity, temperature);
+                card.append(cardBody);
+                $("#today").append(card);
+            }    
         });
     };
 
@@ -69,6 +88,7 @@ $(document).ready (function (){
 
 
 
+    function (getForecast)
 
 
             // if no history, set hist variable to empty array []
