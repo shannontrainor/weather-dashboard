@@ -1,10 +1,22 @@
 //Doc.Ready to let JS load before running
 
-$(document).ready({
+$(document).ready (function (){
+    //Create Event Listener for Search btn
+    $("#search-button").on("click", function (){
+        //check if working  //alert("clicked");
+    });
 
+    function searchWeather(searchValue) {
+        $.ajax({
+                type: "GET"
+                url: "api.openweathermap.org/data/2.5/weather?q=" + searchValue + "&appid=c280336eb7ed8cace2e8a869de69702a&units=imperial",
+                dataType: "JSON", 
+        
+            
+        });
+};
 
     //*************SEARCH BUTTON & SEARCH LOG*****************/
-    //1. Create Event Listener for Search button
     //2. Check local storage for most recent search history
             // if no history, set hist variable to empty array []
             // if history, set hist variable to previous history searches
@@ -44,32 +56,3 @@ $(document).ready({
         //6. use URL/API
         //7. create elements & attach value
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-});
