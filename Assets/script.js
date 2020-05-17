@@ -131,7 +131,11 @@ $(document).ready (function (){
         //if yes, call function to search for weather
         searchWeather(history[history.length-1]);
         //Pass history.length -1 as argument in search weather function
+    }
 
+        //add row for each search
+    for (var i=0; i < history.length; i++) {
+        makeRow(history[i]);
     }
 
 
