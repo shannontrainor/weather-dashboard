@@ -110,7 +110,15 @@ $(document).ready (function (){
             type: "GET",
             url: "https://api.openweathermap.org/data/2.5/uvi?appid=295371f9dffd88f4084ef49bfd45aaae&lat=" + lat + "&lon=" + lon,
             dataType: "json",
-            
+                //success function
+            success: function (data) {
+                    //dynamic elements & values
+                var uv = $("<p>").text("UV Index: ");
+                var btn = $("<span>").addClass("btn btn-sm").text(data.value);
+
+                $("#today .card-body").append(uv.append(btn));
+
+            }
         })
     }
     
