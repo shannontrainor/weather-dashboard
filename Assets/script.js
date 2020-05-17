@@ -13,8 +13,11 @@ $(document).ready (function (){
         searchWeather(searchValue);
     });
 
-    
-    
+
+    $(".history").on("click", "li", function () {
+        searchWeather($(this).text());
+    });
+
     //make row, create LI tag, give class name, give text
     function makeRow(text) {
         var li = $("<li>").addClass("list-group-item list-group-item-action").text(text);
@@ -34,12 +37,13 @@ $(document).ready (function (){
                 // if history is available, set hist variable to previous history searches
                 if (history.indexOf(searchValue) === -1) {
                     history.push(searchValue);
+                    //if history not available, push & save to local storage
                     window.localStorage.setItem("history", JSON.stringify(history));
                     //call makeRow function, pass search value as argument to function to make row
                     makeRow(searchValue);
                 };
 
-                //clear history
+                //clear history from today
                 $("#today").empty();
                 //title h3 tag with class & text data.name & timestamp
                 var title = $("<h3>").addClass("card-title").text(data.name + "(" + new Date().toLocaleDateString() + ")");
@@ -64,41 +68,22 @@ $(document).ready (function (){
 
 
 
-                    // Check local storage for most recent search history
-
-    //**HTML SYNTAX FOR CURRENT WEATHER**
-
-    //title h3 tag with class & text data.name & timestamp
-    var title = $("<h3>").addClass("card-title").text(data.name + "(" + new Date().toLocaleDateString() + ")");
-    //div w/ id card
-    var card = $("<div>").addClass("card");
-    //p tags for wind/humid/temp
-    var wind = $("<p>").addClass("card-text").text("Wind Speed:" + data.wind.speed + "mph");
-    var humidity = $("<p>").addClass("card-text").text("Humidity:" + data.main.humidity + "%");
-    var temperature = $("<p>").addClass("card-text").text("Temperature:" + data.main.temp + "F");
-    //cardbody div
-    var cardBody = $("<div>").addClass("card-body");
-    //create image tag
-    var image = $("<img>").attr("src", "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png");
-    //append all to title/HTML
-    title.append(image);
-    cardBody.append(title, wind, humidity, temperature);
-    card.append(cardBody);
-    $("#today").append(card);
+    function getForecast (searchValue) {
+        $.ajax({
+            type: "GET",
+            url: "http://api.openweathermap.org/data/2.5/forecast?q=" + searchValue + "&appid=295371f9dffd88f4084ef49bfd45aaae&units=imperial",
+            dataType: "json",
+        })
+    }
 
 
 
-    function (getForecast)
-
-
-            // if no history, set hist variable to empty array []
-
-            //get search history, turn into array if any is available
+            //get search history, turn into array if  available, empty array if none
     var history = JSON.parse(window.localStorage.getItem("history")) || [];
     
     //Check if history.length > 0
     if (history.length > 0) {
-    //if yes, call function to search for weather
+        //if yes, call function to search for weather
         searchWeather(history[history.length-1]);
         //Pass history.length -1 as argument in search weather function
 
@@ -120,20 +105,7 @@ $(document).ready (function (){
 
 
 
-
-
 });
-
-    //*************SEARCH BUTTON & SEARCH LOG*****************/
-
-    //**************CURRENT WEATHER*********************/
-        //if does not exist, push to history & save to local storage
-            //4. empty saved from today
-    //9.create img tag, append to title
-        //append img tag to title
-        //append temp to card body
-        //append cardbody to card
-        //append card to div on HTML tag "today"
 
     //***************5 DAY FORECAST****************/
         // 1. call 2 functions
