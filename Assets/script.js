@@ -13,6 +13,13 @@ $(document).ready (function (){
         searchWeather(searchValue);
     });
 
+    //make row, create LI tag, give class name, give text
+    function makeRow(text) {
+        var li = $("<li>").addClass("list-group-item list-group-item-action").text(text);
+        //append LI tag to UL with class name history (HTML)
+        $(".history").append(li);
+    }
+
     //function for current weather search
     function searchWeather(searchValue) {
         // Create ajax call to search weather API for current location
@@ -25,7 +32,8 @@ $(document).ready (function (){
                     if (history.indexOf(searchValue) === -1) {
                         history.push(searchValue);
                         window.localStorage.setItem("history", JSON.stringify(history));
-
+                        //call makeRow function, pass search value as argument to function to make row
+                        makeRow(searchValue);
                     }
 
                 }
@@ -52,6 +60,7 @@ $(document).ready (function (){
     var cardBody = $("<div>").addClass("card-body");
 
             // if no history, set hist variable to empty array []
+
             //get search history, turn into array if any is available
     var history = JSON.parse(window.localStorage.getItem("history")) || [];
     
@@ -86,12 +95,8 @@ $(document).ready (function (){
     //*************SEARCH BUTTON & SEARCH LOG*****************/
 
     //**************CURRENT WEATHER*********************/
-    //2. Check if search value (city) exists in history array
         //if does not exist, push to history & save to local storage
-        // also pass search value as argument to function to make row  
-    //3. make row create LI tag, give class name, give text
-        //append LI tag to UL with class name history (HTML)
-    //4. empty saved from today
+            //4. empty saved from today
     //9.create img tag, append to title
         //append img tag to title
         //append temp to card body
