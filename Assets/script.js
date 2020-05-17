@@ -81,6 +81,7 @@ $(document).ready (function (){
                 for (var i = 0; i < data.list.length; i++) {
                         //set time of forecast
                     if (data.list[i].dt_txt.indexOf("13:00:00") !== -1) {
+                        //create HTML elements & add class/attributes
                         var column = $("<div>").addClass("col-md-2");
                         var card = $("<div>").addClass("card bg-primary text-white");
                         var body = $("<div>").addClass("card-body p-2");
@@ -89,7 +90,11 @@ $(document).ready (function (){
 
                         var p1 = $("<p>").addClass("card-text").text("Temperature: " + data.list[i].main.temp_max + "F");
                         var p2 = $("<p>").addClass("card-text").text("Humidity: " + data.list[i].main.humidity + "%");
-                        
+
+                        //append to page
+                        column.append(card.append(body.append(title, image, p1, p2)));
+                        $("#forecast .row").append(col);
+
                     }
                 }
 
