@@ -10,7 +10,7 @@ Using Jquery, Javascript, and simple HTML, a weather app was developed. Inside t
 
 ## Usage
 Here you can see a snippet of the Weather application. On the left there is a working search bar with the most recent searches, in the middle it shows the weather information for the current location you have chosen, and at the bottom is shows the 5 Day Forecast. Unfortunately, I was not able to append the 5 Day Forecast to the page correctly, even after spending some serious time working on the javascript.
-![](weather-dashboard.png)
+![](weather-dashboard2.png)
 
 ## Installation
 To use the Weather Dashboard App to find out specific weather attributes in your location of choice, click this link here:
