@@ -82,8 +82,8 @@ $(document).ready (function (){
                 $("#forecast").html("<h4 class=\"mt-3\">5-Day Forecast:</h4>").append("<div class=\"row\">");
                 //for loop over data.list for 5 day forecasts
                 for (var i = 0; i < data.list.length; i++) {
-                        //set time of forecast
-                    if (data.list[i].dt_txt.indexOf("13:00:00") !== -1) {
+                    //set time of forecast
+                    if (data.list[i].dt_txt.indexOf("22:00:00") !== -1) {
                         //create dynamic elements & add class/attributes/value
                         var column = $("<div>").addClass("col-md-2");
                         var card = $("<div>").addClass("card bg-primary text-white");
@@ -96,7 +96,7 @@ $(document).ready (function (){
 
                         //append to page
                         column.append(card.append(body.append(title, image, p1, p2)));
-                        $("#forecast .row").append(col);
+                        $("#forecast .row").append(column);
 
                     };
                 };
@@ -110,7 +110,7 @@ $(document).ready (function (){
             type: "GET",
             url: "https://api.openweathermap.org/data/2.5/uvi?appid=295371f9dffd88f4084ef49bfd45aaae&lat=" + lat + "&lon=" + lon,
             dataType: "json",
-                //success function
+            //success function
             success: function (data) {
                     //dynamic elements & values
                 var uv = $("<p>").text("UV Index: ");
@@ -119,11 +119,11 @@ $(document).ready (function (){
                 $("#today .card-body").append(uv.append(btn));
 
             }
-        })
-    }
+        });
+    };
     
 
-            //get search history, turn into array if  available, empty array if none
+        //get search history, turn into array if  available, empty array if none
     var history = JSON.parse(window.localStorage.getItem("history")) || [];
     
     //Check if history.length > 0
@@ -133,7 +133,7 @@ $(document).ready (function (){
         //Pass history.length -1 as argument in search weather function
     }
 
-        //add row for each search
+    //add row for each search
     for (var i=0; i < history.length; i++) {
         makeRow(history[i]);
     }
